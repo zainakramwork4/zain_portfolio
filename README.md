@@ -87,18 +87,41 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, install the dependencies and run the development server:
+This repo now uses [**Bun**](https://bun.sh/) as the package manager. Install Bun, then:
 
 ```bash
-npm run install # to install all dependencies
-
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+bun install   # install all dependencies
+bun dev       # start the dev server
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## 2026 Dependency Upgrade
+
+The project has been refreshed to run on the latest stable versions of every major dependency. Headline changes:
+
+- **Next.js** `14.2` → `16.2` (Turbopack builds, removal of `next lint` — replaced with `eslint .`)
+- **React / React DOM** `18` → `19`
+- **Tailwind CSS** `3` → `4` (new `@tailwindcss/postcss` plugin, `@import "tailwindcss"` + `@config` directive in `globals.css` to keep the existing JS config)
+- **@react-three/fiber** `8` → `9` and **@react-three/drei** `9` → `10` (React 19 compatible)
+- **framer-motion** `11` → `12`, **three** `0.162` → `0.184`, **sonner** `1` → `2`, **@emailjs/browser** `4.2` → `4.4`, **react-hook-form**, **lucide-react**, **sharp** all bumped to latest
+- **ESLint** `8` → `9` with flat config (`eslint.config.mjs`) and `eslint-config-next` `16`
+- **Package manager**: switched from npm to **Bun** — `package-lock.json` removed, `bun.lock` checked in
+
+### Code changes required by the upgrade
+
+- Next.js 15+ disallows `dynamic(..., { ssr: false })` inside Server Components, so the three model imports (`Wizard`, `HatModel`, `Staff`) are now wrapped in tiny `*Client.jsx` files marked `"use client"`.
+- `globals.css` switched from `@tailwind base/components/utilities` to `@import "tailwindcss"` + `@config "../../tailwind.config.js"` (legacy JS config kept as-is via the v4 `@config` directive).
+- `postcss.config.js` now uses `@tailwindcss/postcss` instead of the `tailwindcss` PostCSS plugin.
+- `.eslintrc.json` replaced with `eslint.config.mjs` (flat config) using `eslint-config-next/core-web-vitals`.
+- `package.json` `lint` script changed from `next lint` to `eslint .`.
+
+### Want the original tutorial code?
+
+The pre-upgrade version (Next.js 14, React 18, Tailwind 3, npm) is preserved in git history. To check it out locally:
+
+```bash
+git checkout 3b313c4   # last commit before the upgrade
+```
+
+Or browse it on GitHub: [commit 3b313c4](https://github.com/codebucks27/Next.js-Creative-Portfolio-Website/tree/3b313c484d2bdf853c8db72a2ba54995b50faf46).
