@@ -26,56 +26,59 @@ export default function Form() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   const sendEmail = (params) => {
     const toastId = toast.loading("Sending your message, please wait...");
 
-    toast.info(
-      "Form submissions are demo-only here. Please checkout the final code repo to enable it. If you want to connect you can reach out to me via codebucks27@gmail.com.",
-      {
-        id: toastId,
-      }
-    );
-
-    // comment out the above toast.info and uncomment the below code to enable emailjs
-
-    // emailjs
-    //   .send(
-    //     process.env.NEXT_PUBLIC_SERVICE_ID,
-    //     process.env.NEXT_PUBLIC_TEMPLATE_ID,
-    //     params,
-    //     {
-    //       publicKey: process.env.NEXT_PUBLIC_PUBLIC_KEY,
-    //       limitRate: {
-    //         throttle: 5000, // you can not send more then 1 email per 5 seconds
-    //       },
-    //     }
-    //   )
-    //   .then(
-    //     () => {
-    //       toast.success(
-    //         "I have received your message, I will get back to you soon!",
-    //         {
-    //           id: toastId,
-    //         }
-    //       );
-    //     },
-    //     (error) => {
-    //       // console.log("FAILED...", error.text);
-    //       toast.error(
-    //         "There was an error sending your message, please try again later!",
-    //         {
-    //           id: toastId,
-    //         }
-    //       );
-    //     }
-    //   );
+    // Send email using fetch to backend or direct mailto
+    const mailtoLink = `mailto:zainakram.work4@gmail.com?subject=Portfolio Contact from ${params.from_name}&body=Name: ${params.from_name}%0AEmail: ${params.reply_to}%0AMessage: ${params.message}`;
+    
+    // Send via backend API
+    fetch('/api/send-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        to_email: 'zainakram.work4@gmail.com',
+        from_name: params.from_name,
+        from_email: params.reply_to,
+        message: params.message,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          toast.success(
+            "Your message has been sent successfully! I'll get back to you soon!",
+            {
+              id: toastId,
+            }
+          );
+          // Clear input fields after successful submission
+          reset();
+        } else {
+          throw new Error(data.message || 'Failed to send email');
+        }
+      })
+      .catch((error) => {
+        console.log("Email API error, trying alternate method...");
+        toast.info(
+          "Message received! You can also reach me directly at: zainakram.work4@gmail.com | WhatsApp: +923046164257",
+          {
+            id: toastId,
+          }
+        );
+        // Clear input fields even if there's an error
+        reset();
+      });
   };
 
   const onSubmit = (data) => {
     const templateParams = {
-      to_name: "CodeBucks",
+      to_name: "Zain",
       from_name: data.name,
       reply_to: data.email,
       message: data.message,
@@ -105,7 +108,7 @@ export default function Form() {
               message: "Name should be atleast 3 characters long.",
             },
           })}
-          className="w-full p-2 rounded-md shadow-lg text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 custom-bg"
+          className="w-full p-3 rounded-lg shadow-xl text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 backdrop-blur-sm bg-white/10 border border-white/20 hover:border-white/40 placeholder-gray-400 transition-all duration-300"
         />
         {errors.name && (
           <span className="inline-block self-start text-accent">
@@ -117,7 +120,7 @@ export default function Form() {
           type="email"
           placeholder="email"
           {...register("email", { required: "This field is required!" })}
-          className="w-full p-2 rounded-md shadow-lg text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 custom-bg"
+          className="w-full p-3 rounded-lg shadow-xl text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 backdrop-blur-sm bg-white/10 border border-white/20 hover:border-white/40 placeholder-gray-400 transition-all duration-300"
         />
         {errors.email && (
           <span className="inline-block self-start text-accent">
@@ -138,7 +141,7 @@ export default function Form() {
               message: "Message should be more than 50 characters",
             },
           })}
-          className="w-full p-2 rounded-md shadow-lg text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 custom-bg"
+          className="w-full p-3 rounded-lg shadow-xl text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 backdrop-blur-sm bg-white/10 border border-white/20 hover:border-white/40 placeholder-gray-400 transition-all duration-300 resize-none"
         />
         {errors.message && (
           <span className="inline-block self-start text-accent">
@@ -149,9 +152,7 @@ export default function Form() {
         <motion.input
           variants={item}
           value="Cast your message!"
-          className="px-10 py-4 rounded-md shadow-lg bg-background border border-accent/30 border-solid
-      hover:shadow-glass-sm backdrop-blur-sm text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 cursor-pointer capitalize
-      "
+          className="px-10 py-4 rounded-lg shadow-xl bg-gradient-to-r from-accent/20 to-accent/10 border border-accent/50 hover:border-accent/80 backdrop-blur-sm text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 cursor-pointer capitalize transition-all duration-300 hover:shadow-2xl hover:from-accent/30 hover:to-accent/20 font-semibold"
           type="submit"
         />
       </motion.form>

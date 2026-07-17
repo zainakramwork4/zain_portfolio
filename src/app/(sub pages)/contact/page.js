@@ -1,6 +1,7 @@
 import Image from "next/image";
 import bg from "../../../../public/background/contact-background.png";
 import Form from "@/components/contact/Form";
+import ContactInfo from "@/components/contact/ContactInfo";
 
 export const metadata = {
   title: "Contact",
@@ -31,7 +32,14 @@ export default function Contact() {
             magic in response.
           </p>
         </div>
-        <Form />
+        
+        <div className="w-full px-4 md:px-8 lg:px-16">
+          <ContactInfo />
+        </div>
+        
+        <div className="py-8">
+          <Form />
+        </div>
       </article>
     </>
   );
