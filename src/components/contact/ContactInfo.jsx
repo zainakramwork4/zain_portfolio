@@ -27,7 +27,7 @@ export default function ContactInfo() {
       label: "Email",
       value: "zainakram.work4@gmail.com",
       href: "mailto:zainakram.work4@gmail.com",
-      color: "from-red-500 to-pink-500",
+      color: "from-red-400 to-pink-400",
     },
     {
       icon: MessageCircle,
