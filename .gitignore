@@ -5,6 +5,12 @@
 /.pnp
 .pnp.js
 .yarn/install-state.gz
+.next
+.env
+.env.local
+.vercel
+.env.examle.local
+.env.example
 
 # testing
 /coverage

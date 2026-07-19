@@ -31,13 +31,7 @@ export const projectsData = [
     date: "2024-02",
     demoLink: "https://github.com/zainakramwork4/Terasols-Management-System",
   },
-  {
-    id: 3,
-    name: "Tax Management System",
-    description: "Comprehensive tax calculation and management solution for businesses",
-    date: "2024-02",
-    demoLink: "https://github.com/zainakramwork4/taxmanagement-system",
-  },
+
   {
     id: 4,
     name: "Smart Meeting Platform",
