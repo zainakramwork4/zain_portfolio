@@ -18,7 +18,7 @@ const AboutDetails = () => {
           <p className="font-light text-xs sm:text-sm md:text-base">
             My journey in web development is powered by an
             array of unique tools and languages, with JavaScript
-            at the core of everything I build. With 2+ years of experience,
+            at the core of everything I build. With 4+ years of experience,
             I work closely with frameworks like React.js and Next.js to craft seamless,
             user-friendly websites. And strong design skills,
             I focus on building fast, secure, and visually striking web experiences.
