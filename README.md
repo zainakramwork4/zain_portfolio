@@ -1,93 +1,97 @@
-# Next.js Creative Portfolio Tutorial: Build Amazing Portfolio Website with Next.js, Three.js, and Tailwind CSS 🔥
+# Muhammad Zain Akram | Creative Developer Portfolio 🔥
 
-![GitHub stars](https://img.shields.io/github/stars/codebucks27/Next.js-Creative-Portfolio-Website?style=social&logo=ApacheSpark&label=Stars)&nbsp;&nbsp;
-![GitHub forks](https://img.shields.io/github/forks/codebucks27/Next.js-Creative-Portfolio-Website?style=social&logo=KashFlow&maxAge=3600)&nbsp;&nbsp;
-![Github Followers](https://img.shields.io/github/followers/codebucks27.svg?style=social&label=Follow)&nbsp;&nbsp;<br />
+![GitHub stars](https://img.shields.io/github/stars/zainakramwork4/zain_portfolio?style=social&logo=ApacheSpark&label=Stars)&nbsp;&nbsp;
+![GitHub forks](https://img.shields.io/github/forks/zainakramwork4/zain_portfolio?style=social&logo=KashFlow&maxAge=3600)&nbsp;&nbsp;
+![Github Followers](https://img.shields.io/github/followers/zainakramwork4.svg?style=social&label=Follow)&nbsp;&nbsp;<br />
 
-This repository contains **final code** for Next.js Creative Portfolio website built using Next.js and Three.js. <br />
+This repository contains the **source code** for my personal creative portfolio website, built using **Next.js**, **Three.js**, and **Tailwind CSS**. <br />
 
-For Demo checkout following link👇: <br />
-[Nextjs Creative Portfolio Website Demo](https://next-js-creative-portfolio-website.vercel.app/) <br />
-
----
-✨ Checkout my brand new Saas application -> [AI Headshot Generator](https://www.smartheadshots.ai)
+Check out the live site here 👇: <br />
+[Zain Akram — Portfolio Website](https://[YAHAN-APNA-VERCEL-LIVE-LINK-DAALO].vercel.app/) <br />
 
 ---
 
-Starter Code Files👇: <br />
-➡ Link 💚: [Nextjs Creative Portfolio Website Starter Code](https://github.com/codebucks27/Nextjs-Creative-Portfolio-Starter-Code-Files) <br />
-<!--- ➡ Link 2💚(If you want to support): [Nextjs Creative Portfolio Website Final Code](https://codebucks.gumroad.com/l/ypzlu) <br /> --->
+## 👋 About Me
 
-If you want to learn how to create it please follow below tutorial👇: <br />
-➡ Tutorial Link 💚: [Personal Portfolio Website with Next.js, Three.js & Tailwind CSS Tutorial](https://youtu.be/T5t46vuW8fo) 
-[![YouTube Video Views](https://img.shields.io/youtube/views/T5t46vuW8fo
-)](https://youtu.be/T5t46vuW8fo) <br />
+I'm **Muhammad Zain Akram**, a [YAHAN APNI ROLE/TAGLINE LIKHO — jaise "Full Stack Developer" ya "MERN Stack Developer"]. This portfolio showcases my work, skills, and projects through an interactive 3D experience.
 
-💚 Checkout my personal website [DevDreaming](https://devdreaming.com) <br />
+- 🌐 Portfolio: [YAHAN LIVE LINK]
+- 💼 LinkedIn: [YAHAN LINKEDIN LINK]
+- 🐦 Twitter/X: [YAHAN TWITTER LINK — agar hai]
+- 📧 Email: [YAHAN EMAIL]
+- 🐙 GitHub: [zainakramwork4](https://github.com/zainakramwork4)
 
 ---
-# ⭐DO NOT FORGET TO STAR THIS REPO⭐
----
 
-## Images of The Portfolio Website:
+## Images of The Portfolio Website
 
 #### Home
-![Nextjs Creative Portfolio Website](https://github.com/codebucks27/Nextjs-Creative-Portfolio-Starter-Code-Files/blob/main/website%20images/Home-desktop.png)
+![Portfolio Home Page](./public/website-images/Home-desktop.png)
 
 #### About
-![Nextjs Creative Portfolio Website About Page](https://github.com/codebucks27/Nextjs-Creative-Portfolio-Starter-Code-Files/blob/main/website%20images/About-desktop-full.png)
+![Portfolio About Page](./public/website-images/About-desktop-full.png)
 
 #### Projects
-![Next.js Creative Portfolio Website Projects Page](https://github.com/codebucks27/Nextjs-Creative-Portfolio-Starter-Code-Files/blob/main/website%20images/Projects-desktop.png)
+![Portfolio Projects Page](./public/website-images/Projects-desktop.png)
 
 #### Contact
-![Next.js Creative Portfolio Website Contact Page](https://github.com/codebucks27/Nextjs-Creative-Portfolio-Starter-Code-Files/blob/main/website%20images/Contact-desktop.png)
+![Portfolio Contact Page](./public/website-images/Contact-desktop.png)
 
 #### Mobile Version
-![Next.js Creative Portfolio Website Contact Page](https://github.com/codebucks27/Nextjs-Creative-Portfolio-Starter-Code-Files/blob/main/website%20images/Home-mobile.png)
-![Next.js Creative Portfolio Website Contact Page](https://github.com/codebucks27/Nextjs-Creative-Portfolio-Starter-Code-Files/blob/main/website%20images/About-mobile.png)
-![Next.js Creative Portfolio Website Contact Page](https://github.com/codebucks27/Nextjs-Creative-Portfolio-Starter-Code-Files/blob/main/website%20images/Projects-mobile.png)
-![Next.js Creative Portfolio Website Contact Page](https://github.com/codebucks27/Nextjs-Creative-Portfolio-Starter-Code-Files/blob/main/website%20images/Contact-mobile.png)
+![Portfolio Mobile Home](./public/website-images/Home-mobile.png)
+![Portfolio Mobile About](./public/website-images/About-mobile.png)
+![Portfolio Mobile Projects](./public/website-images/Projects-mobile.png)
+![Portfolio Mobile Contact](./public/website-images/Contact-mobile.png)
+
+> ⚠️ Note: Upar wali image paths abhi placeholder hain — apne actual screenshots `public/website-images/` folder mein daal ke path match kar lena.
+
+---
+
+## Tech Stack
+
+- **Framework:** Next.js 16 (React 19)
+- **3D Graphics:** Three.js, @react-three/fiber, @react-three/drei
+- **Styling:** Tailwind CSS 4
+- **Animations:** Framer Motion
+- **Forms:** React Hook Form
+- **Notifications:** Sonner
+- **Emails:** Nodemailer
+- **Icons:** Lucide Icons
+
+---
 
 ## Resources Used in This Project
 
 #### 3D Models
-
-- ["Tim Mckee - Boy Wizard"](https://skfb.ly/6YATu) by [elbertwithane is licensed under Creative Commons Attribution ](http://creativecommons.org/licenses/by/4.0/).
-- ["Stylized wizard hat"](https://skfb.ly/ozxOQ) by [Enkarra is licensed under Creative Commons Attribution](http://creativecommons.org/licenses/by/4.0/).
-- ["Wizard Staff"](https://skfb.ly/6QYZw) by [Toymancer Studio is licensed under Creative Commons Attribution](http://creativecommons.org/licenses/by/4.0/).
+- ["Tim Mckee - Boy Wizard"](https://skfb.ly/6YATu) by [elbertwithane](http://creativecommons.org/licenses/by/4.0/) — licensed under Creative Commons Attribution.
+- ["Stylized wizard hat"](https://skfb.ly/ozxOQ) by [Enkarra](http://creativecommons.org/licenses/by/4.0/) — licensed under Creative Commons Attribution.
+- ["Wizard Staff"](https://skfb.ly/6QYZw) by [Toymancer Studio](http://creativecommons.org/licenses/by/4.0/) — licensed under Creative Commons Attribution.
 
 #### AI Images
-
 - Created with the help of [Playground AI](https://playgroundai.com/)
 
-#### Github Stats & Details
-
-- [Github ReadMe Stats](https://github.com/anuraghazra/github-readme-stats)
+#### GitHub Stats & Details
+- [GitHub ReadMe Stats](https://github.com/anuraghazra/github-readme-stats)
 - [Skills Icons](https://github.com/tandpfun/skill-icons)
-- [Github Readme Streak Stats](https://github.com/denvercoder1/github-readme-streak-stats)
+- [GitHub Readme Streak Stats](https://github.com/denvercoder1/github-readme-streak-stats)
 
 #### Development Resources
+- Fonts from [Google Fonts](https://fonts.google.com/)
+- Icons from [Lucide Icons](https://lucide.dev/)
+- Notifications from [Sonner](https://sonner.emilkowal.ski/)
+- Form created using [react-hook-form](https://react-hook-form.com/)
+- Animations using [Framer Motion](https://www.framer.com/motion/)
+- Emails via [Nodemailer](https://nodemailer.com/)
+- Converted 3D models to JSX using [Gltf JSX](https://github.com/pmndrs/gltfjsx)
 
-- Fonts from [Google Fonts](https://fonts.google.com/) <br />
-- Icons from [Lucide Icons](https://lucide.dev/) <br />
-- Notifications from [Sonner](https://sonner.emilkowal.ski/) <br />
-- Form created using [react-hook-form](https://react-hook-form.com/) <br />
-- Animations using [framer-motion](https://www.framer.com/motion/) <br />
-- Emails using [Emailjs](https://www.emailjs.com/) <br />
-- Convert 3d models to JSX using [Gltf JSX](https://github.com/pmndrs/gltfjsx)
-
-#### Audio 
-
+#### Audio
 - Music by <a href="https://pixabay.com/users/shidenbeatsmusic-25676252/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=20772">Shiden Beats Music</a> from <a href="https://pixabay.com/music//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=20772">Pixabay</a>
 
 ---
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 ## Getting Started
 
-This repo now uses [**Bun**](https://bun.sh/) as the package manager. Install Bun, then:
+This repo uses [**Bun**](https://bun.sh/) as the package manager. Install Bun, then:
 
 ```bash
 bun install   # install all dependencies
@@ -96,34 +100,24 @@ bun dev       # start the dev server
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## 2026 Dependency Upgrade
+## Dependency Stack (2026)
 
-The project has been refreshed to run on the latest stable versions of every major dependency. Headline changes:
+The project runs on the latest stable versions of every major dependency:
 
-- **Next.js** `14.2` → `16.2` (Turbopack builds, removal of `next lint` — replaced with `eslint .`)
-- **React / React DOM** `18` → `19`
-- **Tailwind CSS** `3` → `4` (new `@tailwindcss/postcss` plugin, `@import "tailwindcss"` + `@config` directive in `globals.css` to keep the existing JS config)
-- **@react-three/fiber** `8` → `9` and **@react-three/drei** `9` → `10` (React 19 compatible)
-- **framer-motion** `11` → `12`, **three** `0.162` → `0.184`, **sonner** `1` → `2`, **@emailjs/browser** `4.2` → `4.4`, **react-hook-form**, **lucide-react**, **sharp** all bumped to latest
-- **ESLint** `8` → `9` with flat config (`eslint.config.mjs`) and `eslint-config-next` `16`
-- **Package manager**: switched from npm to **Bun** — `package-lock.json` removed, `bun.lock` checked in
+- **Next.js** `16.2` (Turbopack builds)
+- **React / React DOM** `19`
+- **Tailwind CSS** `4` (new `@tailwindcss/postcss` plugin)
+- **@react-three/fiber** `9` and **@react-three/drei** `10` (React 19 compatible)
+- **Framer Motion** `12`, **Three.js** `0.185`, **Sonner** `2`, **@emailjs/browser** `4.4`
+- **ESLint** `9` with flat config (`eslint.config.mjs`)
+- **Package manager:** Bun (`bun.lock` checked in)
 
-### Code changes required by the upgrade
+---
 
-- Next.js 15+ disallows `dynamic(..., { ssr: false })` inside Server Components, so the three model imports (`Wizard`, `HatModel`, `Staff`) are now wrapped in tiny `*Client.jsx` files marked `"use client"`.
-- `globals.css` switched from `@tailwind base/components/utilities` to `@import "tailwindcss"` + `@config "../../tailwind.config.js"` (legacy JS config kept as-is via the v4 `@config` directive).
-- `postcss.config.js` now uses `@tailwindcss/postcss` instead of the `tailwindcss` PostCSS plugin.
-- `.eslintrc.json` replaced with `eslint.config.mjs` (flat config) using `eslint-config-next/core-web-vitals`.
-- `package.json` `lint` script changed from `next lint` to `eslint .`.
+## License
 
-### Want the original tutorial code?
+This project is for personal portfolio use. 3D models and audio are used under their respective Creative Commons licenses (credited above).
 
-The pre-upgrade version (Next.js 14, React 18, Tailwind 3, npm) is preserved in git history. To check it out locally:
+---
 
-```bash
-git checkout 3b313c4   # last commit before the upgrade
-```
-
-Or browse it on GitHub: [commit 3b313c4](https://github.com/codebucks27/Next.js-Creative-Portfolio-Website/tree/3b313c484d2bdf853c8db72a2ba54995b50faf46).
-# zain_portfolio
-# zain_portfolio
+⭐ If you like this project, feel free to star the repo!
