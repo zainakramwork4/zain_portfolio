@@ -37,12 +37,11 @@ I'm **Muhammad Zain Akram**, This repository contains final code for Next.js Cre
 ![Portfolio Contact Page](public/website-images/contact-desktop.png)
 
 #### Mobile Version
-![Portfolio Mobile Home](public/website-images/home.png)
-![Portfolio Mobile About](./public/website-images/About-mobile.png)
-![Portfolio Mobile Projects](/public/website-images/Project-mobile.png)
+![Portfolio Mobile Home](public/website-images/Home-mobile.png)
+![Portfolio Mobile About](public/website-images/About-mobile.png)
+![Portfolio Mobile Projects](public/website-images/Project-mobile.png)
 ![Portfolio Mobile Contact](public/website-images/contact-mobile.png)
 ![Portfolio Mobile Resume](public/website-images/Resume-website-mobile.png)
-> ⚠️ Note: Upar wali image paths abhi placeholder hain — apne actual screenshots `public/website-images/` folder mein daal ke path match kar lena.
 
 ---
 
