@@ -1,9 +1,11 @@
 "use client";
+
 import { motion } from "framer-motion";
 import { Home } from "lucide-react";
 import Link from "next/link";
 
 const NavLink = motion.create(Link);
+
 const HomeBtn = () => {
   return (
     <NavLink
@@ -12,14 +14,12 @@ const HomeBtn = () => {
       transition={{ delay: 1 }}
       href={"/"}
       target={"_self"}
-      className="text-foreground  rounded-full flex items-center justify-center
-        custom-bg fixed top-4 left-4 w-fit self-start z-50
-        "
+      className="text-foreground rounded-full flex items-center justify-center custom-bg fixed top-4 left-4 w-fit self-start z-50 group"
       aria-label={"home"}
       name={"home"}
       prefetch={false}
     >
-      <span className="relative  w-14 h-14 p-4  hover:text-accent">
+      <span className="relative w-14 h-14 p-4 hover:text-accent">
         <Home className="w-full h-auto" strokeWidth={1.5} />
 
         <span className="peer bg-transparent absolute top-0 left-0 w-full h-full" />
