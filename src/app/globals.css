@@ -40,7 +40,8 @@
 }
 
 @layer utilities {
-  .animate-shimmer {
-    animation: shimmer 3s infinite;
+  .pause {
+  animation-play-state: paused;
+}
   }
 }
