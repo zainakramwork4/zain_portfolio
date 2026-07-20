@@ -15,7 +15,6 @@ Check out the live site here 👇: <br />
 
 I'm **Muhammad Zain Akram**, This repository contains final code for Next.js Creative Portfolio website built using Next.js and Three.js..
 
--
 - 💼 LinkedIn: [https://www.linkedin.com/in/muhammad-zain-akram-/]
 - 🐦 Twitter/X: [https://x.com/codebyzain]
 - 📧 Email: [zainakram.work4@gmil.com]
@@ -32,17 +31,17 @@ I'm **Muhammad Zain Akram**, This repository contains final code for Next.js Cre
 ![Portfolio About Page](public/website-images/About-desktop.png)
 
 #### Projects
-![Portfolio Projects Page](./public/website-images/Projects-desktop.png)
+![Portfolio Projects Page](public/website-images/project-desktop.png)
 
 #### Contact
-![Portfolio Contact Page](./public/website-images/Contact-desktop.png)
+![Portfolio Contact Page](public/website-images/contact-desktop.png)
 
 #### Mobile Version
 ![Portfolio Mobile Home](./public/website-images/Home-mobile.png)
 ![Portfolio Mobile About](./public/website-images/About-mobile.png)
 ![Portfolio Mobile Projects](./public/website-images/Projects-mobile.png)
-![Portfolio Mobile Contact](./public/website-images/Contact-mobile.png)
-
+![Portfolio Mobile Contact](public/website-images/contact-mobile.png)
+![Portfolio Mobile Resume](public/website-images/Resume-website-mobile.png)
 > ⚠️ Note: Upar wali image paths abhi placeholder hain — apne actual screenshots `public/website-images/` folder mein daal ke path match kar lena.
 
 ---
