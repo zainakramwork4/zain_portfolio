@@ -15,11 +15,11 @@ Check out the live site here 👇: <br />
 
 I'm **Muhammad Zain Akram**, a [YAHAN APNI ROLE/TAGLINE LIKHO — jaise "Full Stack Developer" ya "MERN Stack Developer"]. This portfolio showcases my work, skills, and projects through an interactive 3D experience.
 
-- 🌐 Portfolio: [YAHAN LIVE LINK]
-- 💼 LinkedIn: [YAHAN LINKEDIN LINK]
-- 🐦 Twitter/X: [YAHAN TWITTER LINK — agar hai]
-- 📧 Email: [YAHAN EMAIL]
-- 🐙 GitHub: [zainakramwork4](https://github.com/zainakramwork4)
+- 🌐 Portfolio: [https://zain-portfolio-2tpo-zeta.vercel.app/]
+- 💼 LinkedIn: [https://www.linkedin.com/in/muhammad-zain-akram-/]
+- 🐦 Twitter/X: [https://x.com/codebyzain]
+- 📧 Email: [zainakram.work4@gmil.com]
+- 🐙 GitHub: [https://github.com/zainakramwork4]
 
 ---
 
