@@ -13,9 +13,9 @@ Check out the live site here 👇: <br />
 
 ## 👋 About Me
 
-I'm **Muhammad Zain Akram**, a [YAHAN APNI ROLE/TAGLINE LIKHO — jaise "Full Stack Developer" ya "MERN Stack Developer"]. This portfolio showcases my work, skills, and projects through an interactive 3D experience.
+I'm **Muhammad Zain Akram**, This repository contains final code for Next.js Creative Portfolio website built using Next.js and Three.js..
 
-- 🌐 Portfolio: [https://zain-portfolio-2tpo-zeta.vercel.app/]
+-
 - 💼 LinkedIn: [https://www.linkedin.com/in/muhammad-zain-akram-/]
 - 🐦 Twitter/X: [https://x.com/codebyzain]
 - 📧 Email: [zainakram.work4@gmil.com]
@@ -29,7 +29,7 @@ I'm **Muhammad Zain Akram**, a [YAHAN APNI ROLE/TAGLINE LIKHO — jaise "Full St
 ![Portfolio Home Page](public/website-images/Honw-desktop.png)
 
 #### About
-![Portfolio About Page](./public/website-images/About-desktop-full.png)
+![Portfolio About Page](public/website-images/About-desktop.png)
 
 #### Projects
 ![Portfolio Projects Page](./public/website-images/Projects-desktop.png)
