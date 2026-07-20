@@ -58,6 +58,7 @@ const NavButton = ({
     <ResponsiveComponent>
       {({ size }) => {
         return size && size >= 480 ? (
+          /* Desktop Version */
           <div
             className="absolute cursor-pointer z-50"
             style={{ transform: `translate(${x}, ${y})` }}
@@ -66,40 +67,13 @@ const NavButton = ({
               variants={item}
               href={link}
               target={newTab ? "_blank" : "_self"}
-              className="text-foreground  rounded-full flex items-center justify-center
-        custom-bg
-        "
+              className="group text-foreground rounded-full flex items-center justify-center custom-bg"
               aria-label={label}
               name={label}
               prefetch={false}
               scroll={false}
             >
-              <span className="relative w-14 h-14 p-4 animate-spin-slow-reverse hover:text-accent">
-                {getIcon(icon)}
-
-                <span className="peer bg-transparent absolute top-0 left-0 w-full h-full" />
-
-               <span className="relative w-14 h-14 p-4 animate-spin-slow-reverse group-hover:pause hover:text-accent">
-                  {label}
-                </span>
-              </span>
-            </NavLink>
-          </div>
-        ) : (
-          <div className="w-fit cursor-pointer z-50">
-            <NavLink
-              variants={item}
-              href={link}
-              target={newTab ? "_blank" : "_self"}
-              className="text-foreground  rounded-full flex items-center justify-center
-        custom-bg
-        "
-              aria-label={label}
-              name={label}
-              prefetch={false}
-              scroll={false}
-            >
-              <span className="relative  w-10 h-10  xs:w-14 xs:h-14 p-2.5 xs:p-4 hover:text-accent">
+              <span className="relative w-14 h-14 p-4 animate-spin-slow-reverse group-hover:pause hover:text-accent">
                 {getIcon(icon)}
 
                 <span className="peer bg-transparent absolute top-0 left-0 w-full h-full" />
@@ -107,7 +81,36 @@ const NavButton = ({
                 <span
                   className={clsx(
                     "absolute hidden peer-hover:block px-2 py-1 left-full mx-2 top-1/2 -translate-y-1/2 bg-background text-foreground text-sm rounded-md shadow-lg whitespace-nowrap",
-                    labelDirection === "left" ? "right-full left-auto" : ""
+                    labelDirection === "left" ? "right-full left-auto mx-2" : ""
+                  )}
+                >
+                  {label}
+                </span>
+              </span>
+            </NavLink>
+          </div>
+        ) : (
+          /* Mobile / Small Screens Version */
+          <div className="w-fit cursor-pointer z-50">
+            <NavLink
+              variants={item}
+              href={link}
+              target={newTab ? "_blank" : "_self"}
+              className="group text-foreground rounded-full flex items-center justify-center custom-bg"
+              aria-label={label}
+              name={label}
+              prefetch={false}
+              scroll={false}
+            >
+              <span className="relative w-10 h-10 xs:w-14 xs:h-14 p-2.5 xs:p-4 hover:text-accent">
+                {getIcon(icon)}
+
+                <span className="peer bg-transparent absolute top-0 left-0 w-full h-full" />
+
+                <span
+                  className={clsx(
+                    "absolute hidden peer-hover:block px-2 py-1 left-full mx-2 top-1/2 -translate-y-1/2 bg-background text-foreground text-sm rounded-md shadow-lg whitespace-nowrap",
+                    labelDirection === "left" ? "right-full left-auto mx-2" : ""
                   )}
                 >
                   {label}
