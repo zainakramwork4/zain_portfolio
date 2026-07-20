@@ -26,7 +26,7 @@ I'm **Muhammad Zain Akram**, This repository contains final code for Next.js Cre
 ## Images of The Portfolio Website
 
 #### Home
-![Portfolio Home Page](public/website-images/Honw-desktop.png)
+![Portfolio Home Page](public/website-images/Home-desktop.png)
 
 #### About
 ![Portfolio About Page](public/website-images/About-desktop.png)
