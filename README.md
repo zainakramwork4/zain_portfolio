@@ -7,7 +7,7 @@
 This repository contains the **source code** for my personal creative portfolio website, built using **Next.js**, **Three.js**, and **Tailwind CSS**. <br />
 
 Check out the live site here 👇: <br />
-[Zain Akram — Portfolio Website](https://[YAHAN-APNA-VERCEL-LIVE-LINK-DAALO].vercel.app/) <br />
+[Zain Akram — Portfolio Website](https://zain-portfolio-2tpo-zeta.vercel.app/) <br />
 
 ---
 
