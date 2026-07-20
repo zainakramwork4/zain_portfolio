@@ -1,36 +1,90 @@
 "use client";
-
+import { BtnList } from "@/app/data";
+import React from "react";
+import NavButton from "./NavButton";
+import useScreenSize from "../hooks/useScreenSize";
+import ResponsiveComponent from "../ResponsiveComponent";
 import { motion } from "framer-motion";
-import { Home } from "lucide-react";
-import Link from "next/link";
 
-const NavLink = motion.create(Link);
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.3,
+    },
+  },
+};
 
-const HomeBtn = () => {
+const Navigation = () => {
+  const angleIncrement = 360 / BtnList.length;
+  const size = useScreenSize();
+  const isLarge = size >= 1024;
+  const isMedium = size >= 768;
+
   return (
-    <NavLink
-      initial={{ scale: 0 }}
-      animate={{ scale: 1 }}
-      transition={{ delay: 1 }}
-      href={"/"}
-      target={"_self"}
-      className="text-foreground rounded-full flex items-center justify-center custom-bg fixed top-4 left-4 w-fit self-start z-50 group"
-      aria-label={"home"}
-      name={"home"}
-      prefetch={false}
-    >
-      <span className="relative w-14 h-14 p-4 hover:text-accent">
-        <Home className="w-full h-auto" strokeWidth={1.5} />
+    <div className="w-full fixed h-screen flex items-center justify-center">
+      <ResponsiveComponent>
+        {({ size }) => {
+          return size && size >= 480 ? (
+            <motion.div
+              variants={container}
+              initial="hidden"
+              animate="show"
+              className="w-max flex items-center justify-center relative hover:pause animate-spin-slow group"
+            >
+              {BtnList.map((btn, index) => {
+                const angleRad = (index * angleIncrement * Math.PI) / 180;
+                const radius = isLarge
+                  ? "calc(20vw - 1rem)"
+                  : isMedium
+                  ? "calc(30vw - 1rem)"
+                  : "calc(40vw - 1rem)";
+                const x = `calc(${radius}*${Math.cos(angleRad)})`;
+                const y = `calc(${radius}*${Math.sin(angleRad)})`;
 
-        <span className="peer bg-transparent absolute top-0 left-0 w-full h-full" />
+                return <NavButton key={btn.label} x={x} y={y} {...btn} />;
+              })}
+            </motion.div>
+          ) : (
+            <>
+              <motion.div
+                variants={container}
+                initial="hidden"
+                animate="show"
+                className="w-full px-2.5 xs:p-0 xs:w-max flex flex-col space-y-4 item-start xs:items-center justify-center relative  group xs:hidden"
+              >
+                {BtnList.slice(0, BtnList.length / 2).map((btn) => {
+                  return <NavButton key={btn.label} x={0} y={0} {...btn} />;
+                })}
+              </motion.div>
 
-        <span className="absolute hidden peer-hover:block px-2 py-1 left-full mx-2 top-1/2 -translate-y-1/2 bg-background text-foreground text-sm rounded-md shadow-lg whitespace-nowrap">
-          Home
-        </span>
-      </span>
-      <span className="sr-only">Go to Home Page</span>
-    </NavLink>
+              <motion.div
+                variants={container}
+                initial="hidden"
+                animate="show"
+                className="w-full px-2.5 xs:p-0 xs:w-max flex flex-col space-y-4 items-end xs:items-center justify-center relative group xs:hidden"
+              >
+                {BtnList.slice(BtnList.length / 2, BtnList.length).map(
+                  (btn) => {
+                    return (
+                      <NavButton
+                        key={btn.label}
+                        x={0}
+                        y={0}
+                        {...btn}
+                        labelDirection="left"
+                      />
+                    );
+                  }
+                )}
+              </motion.div>
+            </>
+          );
+        }}
+      </ResponsiveComponent>
+    </div>
   );
 };
 
-export default HomeBtn;
+export default Navigation;
