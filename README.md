@@ -26,7 +26,7 @@ I'm **Muhammad Zain Akram**, a [YAHAN APNI ROLE/TAGLINE LIKHO — jaise "Full St
 ## Images of The Portfolio Website
 
 #### Home
-![Portfolio Home Page](./public/website-images/Home-desktop.png)
+![Portfolio Home Page](public/website-images/Honw-desktop.png)
 
 #### About
 ![Portfolio About Page](./public/website-images/About-desktop-full.png)
