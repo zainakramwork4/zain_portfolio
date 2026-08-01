@@ -8,8 +8,10 @@
 .next
 .env
 .env.local
+.env.*
+!.env.example
 .vercel
-.env.examle.local
+.env.example.local
 .env.example
 
 # testing
