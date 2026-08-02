@@ -46,26 +46,27 @@ const AboutDetails = () => {
           </p>
         </ItemLayout>
 
-       {/* Top Languages Card */}
-<ItemLayout
-  className={"col-span-full sm:col-span-6 md:col-span-4 p-0!"}
->
-  <img
-    className="w-full h-auto object-contain min-h-37.5"
-    src="https://github-readme-stats-fkr2.vercel.app/api/top-langs?username=zainakramwork4&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bold=false"
-    alt="GitHub Top Languages"
-    loading="fast"
-  />
-</ItemLayout>
-       {/* Overall Stats Card */}
-<ItemLayout className={"col-span-full md:col-span-8 p-0!"}>
-  <img
-    className="w-full h-auto object-contain min-h-37.5"
-    src="https://github-readme-stats-fkr2.vercel.app/api?username=zainakramwork4&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bold=false"
-    alt="GitHub Stats"
-    loading="fast"
-  />
-</ItemLayout>
+        {/* Top Languages Card */}
+        <ItemLayout
+          className={"col-span-full sm:col-span-6 md:col-span-4 p-0!"}
+        >
+          <img
+            className="w-full h-auto object-contain min-h-37.5"
+            src={`https://github-readme-stats-fkr2.vercel.app/api/top-langs?username=zainakramwork4&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bold=false&cache_seconds=0&v=${Date.now()}`}
+            alt="GitHub Top Languages"
+            loading="fast"
+          />
+        </ItemLayout>
+
+        {/* Overall Stats Card */}
+        <ItemLayout className={"col-span-full md:col-span-8 p-0!"}>
+          <img
+            className="w-full h-auto object-contain min-h-37.5"
+            src={`https://github-readme-stats-fkr2.vercel.app/api?username=zainakramwork4&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bold=false&cache_seconds=0&v=${Date.now()}`}
+            alt="GitHub Stats"
+            loading="fast"
+          />
+        </ItemLayout>
 
         {/* Skills Icons Card */}
         <ItemLayout className={"col-span-full"}>
@@ -88,21 +89,21 @@ const AboutDetails = () => {
           />
         </ItemLayout>
 
-   {/* Pinned Repository Card */}
-<ItemLayout className={"col-span-full md:col-span-6 p-0!"}>
-  <Link
-    href="https://github.com/zainakramwork4"
-    target="_blank"
-    className="w-full"
-  >
-   <img
-  className="w-full h-auto object-contain min-h-37.5"
-  src={`https://github-readme-stats-fkr2.vercel.app/api/pin?username=zainakramwork4&repo=pakbooking&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bold=false&description_lines_count=2&cache_seconds=0&v=${Date.now()}`}
-  alt="Pinned Repo"
-  loading="lazy"
-/>
-  </Link>
-</ItemLayout>
+        {/* Pinned Repository Card */}
+        <ItemLayout className={"col-span-full md:col-span-6 p-0!"}>
+          <Link
+            href="https://github.com/zainakramwork4"
+            target="_blank"
+            className="w-full"
+          >
+            <img
+              className="w-full h-auto object-contain min-h-37.5"
+              src={`https://github-readme-stats-fkr2.vercel.app/api/pin?username=zainakramwork4&repo=pakbooking&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bold=false&description_lines_count=2&cache_seconds=0&v=${Date.now()}`}
+              alt="Pinned Repo"
+              loading="lazy"
+            />
+          </Link>
+        </ItemLayout>
       </div>
     </section>
   );
