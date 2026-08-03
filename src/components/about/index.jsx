@@ -86,7 +86,8 @@ const AboutDetails = () => {
             unoptimized="true"
           />
         </ItemLayout>
-    
+        </ItemLayout>
+
         {/* Pinned Repository Card */}
         <ItemLayout className={"col-span-full md:col-span-6 p-0!"}>
           <Link
