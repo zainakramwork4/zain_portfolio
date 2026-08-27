@@ -78,16 +78,15 @@ const AboutDetails = () => {
           />
         </ItemLayout>
 
-        {/* GitHub Streak Card - Custom Vercel Deployment Link */}
-        <ItemLayout className={"col-span-full md:col-span-6 p-0!"}>
-          <img
-            className="w-full h-auto object-contain min-h-37.5"
-            src={`https://github-readme-streak-stats-wheat-five.vercel.app?user=zainakramwork4&theme=dark&hide_border=true&type=svg&background=EB545400&ring=FEFE5B&currStreakLabel=FEFE5B&v=${Date.now()}`}
-            alt="GitHub Streak"
-            loading="fast"
-            unoptimized="true"
-          />
-        </ItemLayout>
+       {/* GitHub Streak Card - Custom Vercel Deployment */}
+<ItemLayout className={"col-span-full md:col-span-6 p-0!"}>
+  <img
+    className="w-full h-auto object-contain min-h-37.5"
+    src={`https://github-readme-streak-stats-nu-kohl.vercel.app?user=zainakramwork4&theme=dark&hide_border=true&type=svg&background=EB545400&ring=FEFE5B&currStreakLabel=FEFE5B&v=${Date.now()}`}
+    alt="GitHub Streak"
+    loading="eager"
+  />
+</ItemLayout>
 
         {/* Pinned Repository Card */}
         <ItemLayout className={"col-span-full md:col-span-6 p-0!"}>
