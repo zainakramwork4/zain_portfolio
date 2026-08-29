@@ -1,9 +1,19 @@
-"use client"
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import ItemLayout from "./ItemLayout";
 import Link from "next/link";
 
 const AboutDetails = () => {
+  // Date.now() differs between the server render and the first client render,
+  // which is exactly what causes "tree hydrated but attributes didn't match".
+  // We only compute the real timestamp AFTER mounting on the client, so the
+  // server-rendered HTML and the first client render stay identical.
+  const [cacheBust, setCacheBust] = useState("");
+
+  useEffect(() => {
+    setCacheBust(Date.now());
+  }, []);
+
   return (
     <section className="py-20 w-full">
       <div className="grid grid-cols-12 gap-4 xs:gap-6 md:gap-8 w-full">
@@ -52,9 +62,9 @@ const AboutDetails = () => {
         >
           <img
             className="w-full h-auto object-contain min-h-37.5"
-            src={`https://github-readme-stats-fkr2.vercel.app/api/top-langs?username=zainakramwork4&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bold=false&cache_seconds=0&v=${Date.now()}`}
+            src={`https://github-readme-stats-fkr2.vercel.app/api/top-langs?username=zainakramwork4&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bold=false&cache_seconds=0&v=${cacheBust}`}
             alt="GitHub Top Languages"
-            loading="fast"
+            loading="lazy"
           />
         </ItemLayout>
 
@@ -62,9 +72,9 @@ const AboutDetails = () => {
         <ItemLayout className={"col-span-full md:col-span-8 p-0!"}>
           <img
             className="w-full h-auto object-contain min-h-37.5"
-            src={`https://github-readme-stats-fkr2.vercel.app/api?username=zainakramwork4&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bold=false&cache_seconds=0&v=${Date.now()}`}
+            src={`https://github-readme-stats-fkr2.vercel.app/api?username=zainakramwork4&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bold=false&cache_seconds=0&v=${cacheBust}`}
             alt="GitHub Stats"
-            loading="fast"
+            loading="lazy"
           />
         </ItemLayout>
 
@@ -74,7 +84,7 @@ const AboutDetails = () => {
             className="w-full h-auto"
             src="https://skillicons.dev/icons?i=bootstrap,css,docker,git,github,html,js,mongodb,mysql,netlify,nextjs,nodejs,npm,postgres,react,tailwind,threejs,vercel,vite,vscode,yarn"
             alt="Skills Icons"
-            loading="fast"
+            loading="lazy"
           />
         </ItemLayout>
 
@@ -82,9 +92,9 @@ const AboutDetails = () => {
         <ItemLayout className={"col-span-full md:col-span-6 p-0!"}>
           <img
             className="w-full h-auto object-contain min-h-37.5"
-            src={`https://github-readme-streak-stats-wheat-five.vercel.app?user=zainakramwork4&theme=dark&hide_border=true&type=svg&background=EB545400&ring=FEFE5B&currStreakLabel=FEFE5B&v=${Date.now()}`}
+            src={`https://github-readme-streak-stats-wheat-five.vercel.app?user=zainakramwork4&theme=dark&hide_border=true&type=svg&background=EB545400&ring=FEFE5B&currStreakLabel=FEFE5B&v=${cacheBust}`}
             alt="GitHub Streak"
-            loading="fast"
+            loading="lazy"
             unoptimized="true"
           />
         </ItemLayout>
@@ -98,7 +108,7 @@ const AboutDetails = () => {
           >
             <img
               className="w-full h-auto object-contain min-h-37.5"
-              src={`https://github-readme-stats-fkr2.vercel.app/api/pin?username=zainakramwork4&repo=pakbooking&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bold=false&description_lines_count=2&cache_seconds=0&v=${Date.now()}`}
+              src={`https://github-readme-stats-fkr2.vercel.app/api/pin?username=zainakramwork4&repo=pakbooking&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bold=false&description_lines_count=2&cache_seconds=0&v=${cacheBust}`}
               alt="Pinned Repo"
               loading="lazy"
             />
