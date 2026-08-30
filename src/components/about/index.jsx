@@ -1,11 +1,12 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import ItemLayout from "./ItemLayout";
 import Link from "next/link";
 
 const AboutDetails = () => {
-  // Generate the cache-busting value only after hydration so the server
-  // render and the first client render stay identical.
+  // Generate the cache-busting value only after hydration
+  // so server and client renders stay identical.
   const [cacheBust, setCacheBust] = useState("");
 
   useEffect(() => {
@@ -18,19 +19,20 @@ const AboutDetails = () => {
 
   const streakBaseUrl =
     process.env.NEXT_PUBLIC_GITHUB_STREAK_STATS_URL ||
-    "https://github-readme-streak-stats-rho-rust.vercel.app/";
+    "https://github-readme-streak-stats-rho-rust.vercel.app";
 
   const cacheParam = cacheBust ? `&v=${cacheBust}` : "";
 
   return (
     <section className="py-20 w-full">
       <div className="grid grid-cols-12 gap-4 xs:gap-6 md:gap-8 w-full">
-        <ItemLayout
-          className="col-span-full lg:col-span-8 row-span-2 flex-col items-start"
-        >
+
+        {/* About Description */}
+        <ItemLayout className="col-span-full lg:col-span-8 row-span-2 flex-col items-start">
           <h2 className="text-xl md:text-2xl text-left w-full capitalize">
             Architect of Enchantment
           </h2>
+
           <p className="font-light text-xs sm:text-sm md:text-base">
             My journey in web development is powered by an array of unique
             tools and languages, with JavaScript at the core of everything I
@@ -45,15 +47,22 @@ const AboutDetails = () => {
           </p>
         </ItemLayout>
 
+        {/* Clients */}
         <ItemLayout className="col-span-full xs:col-span-6 lg:col-span-4 text-accent">
           <p className="font-semibold w-full text-left text-2xl sm:text-5xl">
-            100+ <sub className="font-semibold text-base">clients</sub>
+            100+
+            <sub className="font-semibold text-base"> clients</sub>
           </p>
         </ItemLayout>
 
+        {/* Experience */}
         <ItemLayout className="col-span-full xs:col-span-6 lg:col-span-4 text-accent">
           <p className="font-semibold w-full text-left text-2xl sm:text-5xl">
-            5+ <sub className="font-semibold text-base">years of experience</sub>
+            5+
+            <sub className="font-semibold text-base">
+              {" "}
+              years of experience
+            </sub>
           </p>
         </ItemLayout>
 
@@ -61,17 +70,17 @@ const AboutDetails = () => {
         <ItemLayout className="col-span-full sm:col-span-6 md:col-span-4 p-0!">
           <img
             className="w-full h-auto object-contain min-h-37.5"
-            src={`https://github-readme-stats-fkr2.vercel.app/api/top-langs?username=zainakramwork4&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bold=false&cache_seconds=0&v=${cacheBust}`}
+            src={`${statsBaseUrl}/api/top-langs?username=zainakramwork4&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bold=false&cache_seconds=1800${cacheParam}`}
             alt="GitHub Top Languages"
-             loading="lazy"
-       />          
+            loading="lazy"
+          />
         </ItemLayout>
 
         {/* GitHub Overall Stats */}
         <ItemLayout className="col-span-full md:col-span-8 p-0!">
           <img
             className="w-full h-auto object-contain min-h-37.5"
-            src={`https://github-readme-stats-fkr2.vercel.app/api?username=zainakramwork4&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bold=false&cache_seconds=0&v=${cacheBust}`}
+            src={`${statsBaseUrl}/api?username=zainakramwork4&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bold=false&show_icons=true&cache_seconds=1800${cacheParam}`}
             alt="GitHub Stats"
             loading="lazy"
           />
@@ -87,14 +96,14 @@ const AboutDetails = () => {
           />
         </ItemLayout>
 
-        {/* GitHub Streak Card - Custom Vercel Deployment Link */}
-        <ItemLayout className={"col-span-full md:col-span-6 p-0!"}>
-        <img
-  className="w-full h-auto object-contain min-h-37.5"
-  src={`https://github-readme-streak-stats-iota-two-54.vercel.app?user=zainakramwork4&theme=dark&hide_border=true&type=svg&background=EB545400&ring=FEFE5B&currStreakLabel=FEFE5B&v=${cacheBust}`}
-  alt="GitHub Streak"
-  loading="lazy"
-/>
+        {/* GitHub Streak */}
+        <ItemLayout className="col-span-full md:col-span-6 p-0!">
+          <img
+            className="w-full h-auto object-contain min-h-37.5"
+            src={`${streakBaseUrl}/?user=zainakramwork4&theme=dark&hide_border=true&type=svg&background=EB545400&ring=FEFE5B&currStreakLabel=FEFE5B${cacheParam}`}
+            alt="GitHub Streak"
+            loading="lazy"
+          />
         </ItemLayout>
 
         {/* Pinned Repository - pakbooking */}
@@ -107,12 +116,13 @@ const AboutDetails = () => {
           >
             <img
               className="w-full h-auto object-contain min-h-37.5"
-              src={`https://github-readme-stats-fkr2.vercel.app/api/pin?username=zainakramwork4&repo=pakbooking&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bold=false&description_lines_count=2&cache_seconds=0&v=${cacheBust}`}
-              alt="Pinned Repo"
+              src={`${statsBaseUrl}/api/pin?username=zainakramwork4&repo=pakbooking&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bold=false&description_lines_count=2&cache_seconds=1800${cacheParam}`}
+              alt="Pinned Repo - pakbooking"
               loading="lazy"
             />
           </Link>
         </ItemLayout>
+
       </div>
     </section>
   );
