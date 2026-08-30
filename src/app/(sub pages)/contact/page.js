@@ -4,7 +4,7 @@ import Form from "@/components/contact/Form";
 import ContactInfo from "@/components/contact/ContactInfo";
 
 export const metadata = {
-  title: "Contact",
+  title: "Contact | Muhammad Zain Akram",
 };
 
 export default function Contact() {
@@ -12,34 +12,36 @@ export default function Contact() {
     <>
       <Image
         src={bg}
-        alt="Next.js Portfolio website's contact page background image"
+        alt=""
         priority
         sizes="100vw"
-        className="-z-50 fixed top-0 left-0 w-full h-full object-cover object-center opacity-50"
+        aria-hidden="true"
+        className="-z-50 fixed inset-0 h-full w-full object-cover object-center opacity-35"
       />
 
-      <article className="relative w-full flex flex-col items-center justify-center py-8 sm:py-0 space-y-8">
-        <div className="flex flex-col items-center justify-center space-y-6 w-full sm:w-3/4">
-          <h1 className="text-accent font-semibold text-center text-4xl capitalize">
-            summon the wizard
-          </h1>
-          <p className="text-center font-light text-sm xs:text-base">
-            Step into the circle of enchantment and weave your words into the
-            fabric of the cosmos. Whether you seek to conjure collaborations,
-            unlock mysteries, or simply share tales of adventure, your messages
-            are treasured scrolls within this realm. Use the form below to send
-            your missives through the ethereal network, and await the whisper of
-            magic in response.
+      <div className="fixed inset-0 -z-40 bg-black/25" aria-hidden="true" />
+
+      <article className="relative mx-auto flex w-full max-w-7xl flex-col items-center px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
+        <header className="w-full max-w-3xl text-center">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-accent">
+            Get in touch
           </p>
-        </div>
-        
-        <div className="w-full px-4 md:px-8 lg:px-16">
+          <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
+            Let&apos;s build something great.
+          </h1>
+          <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-white/55 sm:text-base">
+            Have a project, collaboration, or opportunity in mind? Send me a
+            message and I&apos;ll get back to you by email.
+          </p>
+        </header>
+
+        <section className="mt-12 w-full" aria-label="Contact details">
           <ContactInfo />
-        </div>
-        
-        <div className="py-8">
+        </section>
+
+        <section className="mt-8 flex w-full justify-center" aria-label="Contact form">
           <Form />
-        </div>
+        </section>
       </article>
     </>
   );
