@@ -139,3 +139,5 @@ export async function GET(request) {
     });
   }
 }
+
+// Keep this route on a dedicated commit so the connected Vercel deployment is retriggered.
