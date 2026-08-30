@@ -1,17 +1,19 @@
 "use client";
+
 import React, { useEffect, useMemo, useState } from "react";
 import ItemLayout from "./ItemLayout";
 import Link from "next/link";
 
-const GITHUB_USERNAME = "zainakramwork4";
-const GITHUB_API = `https://api.github.com/users/${GITHUB_USERNAME}`;
-const GITHUB_REPOS_API = `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`;
+const DEFAULT_USERNAME = "zainakramwork4";
 
 const AboutDetails = () => {
   const [profile, setProfile] = useState(null);
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [streakError, setStreakError] = useState(false);
+
+  const username = process.env.NEXT_PUBLIC_GITHUB_USERNAME || DEFAULT_USERNAME;
 
   useEffect(() => {
     let cancelled = false;
@@ -21,23 +23,20 @@ const AboutDetails = () => {
         setLoading(true);
         setError("");
 
-        const [profileResponse, reposResponse] = await Promise.all([
-          fetch(GITHUB_API, { headers: { Accept: "application/vnd.github+json" } }),
-          fetch(GITHUB_REPOS_API, { headers: { Accept: "application/vnd.github+json" } }),
-        ]);
+        const response = await fetch("/api/github", {
+          headers: { Accept: "application/json" },
+          cache: "no-store",
+        });
 
-        if (!profileResponse.ok || !reposResponse.ok) {
-          throw new Error("GitHub API request failed");
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data?.error || "GitHub API request failed");
         }
 
-        const [profileData, reposData] = await Promise.all([
-          profileResponse.json(),
-          reposResponse.json(),
-        ]);
-
         if (!cancelled) {
-          setProfile(profileData);
-          setRepos(Array.isArray(reposData) ? reposData : []);
+          setProfile(data.profile || null);
+          setRepos(Array.isArray(data.repos) ? data.repos : []);
         }
       } catch (err) {
         if (!cancelled) {
@@ -75,8 +74,14 @@ const AboutDetails = () => {
   }, [repos]);
 
   const stats = useMemo(() => {
-    const stars = repos.reduce((sum, repo) => sum + (repo.stargazers_count || 0), 0);
-    const forks = repos.reduce((sum, repo) => sum + (repo.forks_count || 0), 0);
+    const stars = repos.reduce(
+      (sum, repo) => sum + (repo.stargazers_count || 0),
+      0
+    );
+    const forks = repos.reduce(
+      (sum, repo) => sum + (repo.forks_count || 0),
+      0
+    );
 
     return {
       repos: profile?.public_repos ?? repos.length,
@@ -86,7 +91,9 @@ const AboutDetails = () => {
     };
   }, [profile, repos]);
 
-  const pakbooking = repos.find((repo) => repo.name.toLowerCase() === "pakbooking");
+  const pakbooking = repos.find(
+    (repo) => repo.name?.toLowerCase() === "pakbooking"
+  );
 
   return (
     <section className="py-20 w-full">
@@ -118,9 +125,13 @@ const AboutDetails = () => {
         {/* GitHub Top Languages */}
         <ItemLayout className="col-span-full sm:col-span-6 md:col-span-4 flex-col items-start justify-center">
           <div className="w-full">
-            <h3 className="text-lg md:text-xl font-semibold mb-4 text-accent">
-              GitHub Top Languages
-            </h3>
+            <div className="flex items-center justify-between gap-3 mb-4">
+              <h3 className="text-lg md:text-xl font-semibold text-accent">
+                GitHub Top Languages
+              </h3>
+              <span className="text-xs opacity-60">{username}</span>
+            </div>
+
             {loading ? (
               <p className="text-sm opacity-70">Loading GitHub data...</p>
             ) : languages.length ? (
@@ -133,7 +144,7 @@ const AboutDetails = () => {
                     </div>
                     <div className="h-2 rounded-full bg-white/10 overflow-hidden">
                       <div
-                        className="h-full rounded-full bg-accent"
+                        className="h-full rounded-full bg-accent transition-all duration-500"
                         style={{ width: `${language.percentage}%` }}
                       />
                     </div>
@@ -152,6 +163,7 @@ const AboutDetails = () => {
             <h3 className="text-lg md:text-xl font-semibold mb-5 text-accent">
               GitHub Stats
             </h3>
+
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {[
                 [stats.repos, "Public Repos"],
@@ -159,13 +171,21 @@ const AboutDetails = () => {
                 [stats.forks, "Total Forks"],
                 [stats.followers, "Followers"],
               ].map(([value, label]) => (
-                <div key={label} className="rounded-xl border border-white/10 bg-black/20 p-4">
-                  <p className="text-2xl md:text-3xl font-bold text-accent">{value}</p>
+                <div
+                  key={label}
+                  className="rounded-xl border border-white/10 bg-black/20 p-4"
+                >
+                  <p className="text-2xl md:text-3xl font-bold text-accent">
+                    {value}
+                  </p>
                   <p className="text-xs opacity-70 mt-1">{label}</p>
                 </div>
               ))}
             </div>
-            {error && <p className="text-xs opacity-70 mt-4">{error}</p>}
+
+            {error && (
+              <p className="text-xs opacity-70 mt-4">{error}</p>
+            )}
           </div>
         </ItemLayout>
 
@@ -179,27 +199,46 @@ const AboutDetails = () => {
           />
         </ItemLayout>
 
-        {/* GitHub Streak - verified working Vercel deployment */}
+        {/* GitHub Streak */}
         <ItemLayout className="col-span-full md:col-span-6 p-0!">
-          <img
-            className="w-full h-auto object-contain min-h-37.5"
-            src="https://github-readme-streak-stats-rho-rust.vercel.app/?user=zainakramwork4&theme=dark&hide_border=true&type=svg&background=EB545400&ring=FEFE5B&currStreakLabel=FEFE5B"
-            alt="GitHub Streak"
-            loading="lazy"
-          />
+          {streakError ? (
+            <div className="w-full min-h-37.5 flex items-center justify-center p-6">
+              <div className="text-center">
+                <p className="text-lg font-semibold text-accent">GitHub Streak</p>
+                <p className="text-xs opacity-70 mt-2">
+                  Streak service is temporarily unavailable.
+                </p>
+              </div>
+            </div>
+          ) : (
+            <img
+              className="w-full h-auto object-contain min-h-37.5"
+              src="/api/github/streak"
+              alt="GitHub Streak"
+              loading="lazy"
+              onError={() => setStreakError(true)}
+            />
+          )}
         </ItemLayout>
 
-        {/* Pinned Repository - pakbooking */}
+        {/* Pinned Repository: pakbooking */}
         <ItemLayout className="col-span-full md:col-span-6 flex-col items-start justify-center">
           <Link
-            href="https://github.com/zainakramwork4/pakbooking"
+            href={
+              pakbooking?.html_url ||
+              "https://github.com/zainakramwork4/pakbooking"
+            }
             target="_blank"
             rel="noopener noreferrer"
             className="w-full"
           >
             <div className="w-full rounded-xl border border-white/10 bg-black/20 p-5 hover:bg-black/30 transition-colors">
-              <p className="text-xs uppercase tracking-wider opacity-60 mb-2">Pinned Project</p>
-              <h3 className="text-xl md:text-2xl font-semibold text-accent">pakbooking</h3>
+              <p className="text-xs uppercase tracking-wider opacity-60 mb-2">
+                Pinned Project
+              </p>
+              <h3 className="text-xl md:text-2xl font-semibold text-accent">
+                pakbooking
+              </h3>
               <p className="text-sm opacity-75 mt-2 line-clamp-2">
                 {pakbooking?.description || "PakBooking project repository"}
               </p>
