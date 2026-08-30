@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, BriefcaseBusiness, Sparkles } from "lucide-react";
+import { ArrowRight, BriefcaseBusiness, FolderKanban } from "lucide-react";
 import Link from "next/link";
 import ProjectLayout from "./ProjectLayout";
 
@@ -10,7 +10,7 @@ const container = {
   show: {
     transition: {
       staggerChildren: 0.08,
-      delayChildren: 0.15,
+      delayChildren: 0.12,
     },
   },
 };
@@ -20,79 +20,89 @@ const ProjectList = ({ projects }) => {
     projects.find((project) => project.name.toLowerCase().includes("pakbooking")) ||
     projects[0];
 
-  const remainingProjects = projects.filter((project) => project.id !== featuredProject.id);
+  const remainingProjects = projects.filter(
+    (project) => project.id !== featuredProject?.id
+  );
 
   return (
     <motion.main
       variants={container}
       initial="hidden"
       animate="show"
-      className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-24 md:pt-12"
+      className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-24 pt-10 sm:px-6 md:pt-14 lg:px-8"
     >
-      <motion.section
+      <motion.header
         initial={{ opacity: 0, y: 18 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="mb-8 md:mb-10"
+        transition={{ duration: 0.55, ease: "easeOut" }}
+        className="mb-10 md:mb-12"
       >
-        <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-2xl">
-            <div className="flex items-center gap-2 mb-3 text-accent/90 text-sm font-medium">
-              <Sparkles size={16} />
+        <div className="flex flex-col gap-6 border-b border-white/10 pb-8 md:flex-row md:items-end md:justify-between">
+          <div className="max-w-3xl">
+            <div className="mb-3 inline-flex items-center gap-2 text-sm font-medium text-accent">
+              <FolderKanban size={16} />
               <span>Selected work</span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-foreground">
-              Projects built to create real business value.
+            <h1 className="text-3xl font-semibold tracking-[-0.03em] text-foreground sm:text-4xl md:text-5xl lg:text-6xl">
+              Projects that turn ideas into products.
             </h1>
 
-            <p className="mt-4 text-sm sm:text-base leading-7 text-muted max-w-xl">
-              A curated collection of products, platforms, and experiments. Each
-              project is focused on solving a real problem with thoughtful UX,
-              modern engineering, and a clear path from idea to launch.
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-muted sm:text-base">
+              A focused collection of web applications, platforms, and
+              experiments built with modern engineering, practical UX, and a
+              strong attention to detail.
             </p>
           </div>
 
           <Link
             href="/contact"
-            className="group inline-flex w-fit items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-5 py-3 text-sm font-semibold text-accent transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/70 hover:bg-accent/15"
+            className="group inline-flex w-fit shrink-0 items-center gap-2 rounded-xl border border-white/15 bg-black/20 px-5 py-3 text-sm font-semibold text-foreground backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/60 hover:text-accent"
           >
             <BriefcaseBusiness size={17} />
             Start a project
-            <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+            <ArrowRight
+              size={16}
+              className="transition-transform duration-300 group-hover:translate-x-1"
+            />
           </Link>
         </div>
-      </motion.section>
+      </motion.header>
 
-      <section className="space-y-5 md:space-y-6">
-        <ProjectLayout {...featuredProject} featured />
+      {featuredProject && (
+        <section className="space-y-6">
+          <ProjectLayout {...featuredProject} featured />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6">
-          {remainingProjects.map((project) => (
-            <ProjectLayout key={project.id ?? project.name} {...project} />
-          ))}
-        </div>
-      </section>
+          {remainingProjects.length > 0 && (
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-6">
+              {remainingProjects.map((project) => (
+                <ProjectLayout key={project.id ?? project.name} {...project} />
+              ))}
+            </div>
+          )}
+        </section>
+      )}
 
       <motion.section
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5, duration: 0.55 }}
-        className="mt-8 md:mt-10 rounded-3xl border border-white/10 bg-black/20 p-6 md:p-8 backdrop-blur-xl"
+        transition={{ delay: 0.45, duration: 0.55 }}
+        className="mt-10 overflow-hidden rounded-3xl border border-white/10 bg-black/25 p-6 backdrop-blur-xl md:p-8"
       >
         <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
-          <div>
-            <p className="text-lg md:text-xl font-semibold text-foreground">
-              Have a product idea that needs to ship?
+          <div className="max-w-xl">
+            <p className="text-lg font-semibold text-foreground md:text-xl">
+              Have an idea worth building?
             </p>
-            <p className="mt-1.5 text-sm text-muted">
-              Let&apos;s turn the problem into a polished, production-ready experience.
+            <p className="mt-2 text-sm leading-6 text-muted">
+              Tell me what you are working on and let&apos;s shape it into a
+              polished, production-ready experience.
             </p>
           </div>
 
           <Link
             href="/contact"
-            className="inline-flex w-fit items-center gap-2 rounded-full bg-accent px-5 py-3 text-sm font-bold text-background transition-transform duration-300 hover:-translate-y-0.5 hover:scale-[1.02]"
+            className="inline-flex w-fit items-center gap-2 rounded-xl bg-accent px-5 py-3 text-sm font-bold text-background transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
           >
             Let&apos;s talk
             <ArrowRight size={16} />
