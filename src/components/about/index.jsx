@@ -65,7 +65,7 @@ const AboutDetails = () => {
            src="https://github-readme-stats.vercel.app/api/top-langs?username=zainakramwork4&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bold=false&cache_seconds=1800"
             alt="GitHub Top Languages"
              loading="lazy"
-       />          
+       />
         </ItemLayout>
 
         {/* Overall Stats Card */}
@@ -88,14 +88,14 @@ const AboutDetails = () => {
           />
         </ItemLayout>
 
-        {/* GitHub Streak Card - Custom Vercel Deployment Link */}
+        {/* GitHub Streak Card */}
         <ItemLayout className={"col-span-full md:col-span-6 p-0!"}>
-       <img
-  className="w-full h-auto object-contain min-h-37.5"
-  src="https://github-readme-streak-stats-rho-rust.vercel.app/?user=zainakramwork4&theme=dark&hide_border=true&type=svg&background=EB545400&ring=FEFE5B&currStreakLabel=FEFE5B"
-  alt="GitHub Streak"
-  loading="lazy"
-/>
+          <img
+            className="w-full h-auto object-contain min-h-37.5"
+            src="https://github-readme-streak-stats-rho-rust.vercel.app/?user=zainakramwork4&theme=dark&hide_border=true&type=svg&background=EB545400&ring=FEFE5B&currStreakLabel=FEFE5B"
+            alt="GitHub Streak"
+            loading="lazy"
+          />
         </ItemLayout>
 
         {/* Pinned Repository Card */}
@@ -106,9 +106,9 @@ const AboutDetails = () => {
             className="w-full"
           >
             <img
-  className="w-full h-auto object-contain min-h-37.5"
-  src="https://github-readme-stats.vercel.app/api/pin?username=zainakramwork4&repo=pakbooking&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bold=false&description_lines_count=2&cache_seconds=1800"
-  alt="Pinned Repo"
+              className="w-full h-auto object-contain min-h-37.5"
+              src="https://github-readme-stats.vercel.app/api/pin?username=zainakramwork4&repo=pakbooking&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bold=false&description_lines_count=2&cache_seconds=1800"
+              alt="Pinned Repo"
               loading="lazy"
             />
           </Link>
