@@ -80,7 +80,7 @@ const AboutDetails = () => {
         <ItemLayout className="col-span-full md:col-span-8 p-0!">
           <img
             className="w-full h-auto object-contain min-h-37.5"
-            src={`${statsBaseUrl}/api?username=zainakramwork4&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bold=false&show_icons=true&cache_seconds=1800${cacheParam}`}
+            src="https://github-readme-stats.vercel.app/api?username=zainakramwork4&theme=transparent&hide_border=true&show_icons=true"
             alt="GitHub Stats"
             loading="lazy"
           />
@@ -100,7 +100,7 @@ const AboutDetails = () => {
         <ItemLayout className="col-span-full md:col-span-6 p-0!">
           <img
             className="w-full h-auto object-contain min-h-37.5"
-            src={`${streakBaseUrl}/?user=zainakramwork4&theme=dark&hide_border=true&type=svg&background=EB545400&ring=FEFE5B&currStreakLabel=FEFE5B${cacheParam}`}
+            src="https://github-readme-streak-stats-rho-rust.vercel.app/?user=zainakramwork4&theme=dark&hide_border=true&type=svg&background=EB545400&ring=FEFE5B&currStreakLabel=FEFE5B"
             alt="GitHub Streak"
             loading="lazy"
           />
