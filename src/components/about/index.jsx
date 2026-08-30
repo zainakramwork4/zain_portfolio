@@ -4,15 +4,15 @@ import ItemLayout from "./ItemLayout";
 import Link from "next/link";
 
 const AboutDetails = () => {
-  // Date.now() differs between the server render and the first client render,
-  // which is exactly what causes "tree hydrated but attributes didn't match".
-  // We only compute the real timestamp AFTER mounting on the client, so the
-  // server-rendered HTML and the first client render stay identical.
+  // Add a cache-buster after hydration so GitHub cards can refresh
+  // without causing a server/client hydration mismatch.
   const [cacheBust, setCacheBust] = useState("");
 
   useEffect(() => {
     setCacheBust(Date.now());
   }, []);
+
+  const statsQuery = `&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bold=false&cache_seconds=3600&v=${cacheBust}`;
 
   return (
     <section className="py-20 w-full">
@@ -51,34 +51,33 @@ const AboutDetails = () => {
           className={"col-span-full xs:col-span-6 lg:col-span-4 text-accent"}
         >
           <p className="font-semibold w-full text-left text-2xl sm:text-5xl">
-            5+{" "}
-            <sub className="font-semibold text-base">years of experience</sub>
+            5+ <sub className="font-semibold text-base">years of experience</sub>
           </p>
         </ItemLayout>
 
-        {/* Top Languages Card */}
+        {/* GitHub Top Languages */}
         <ItemLayout
           className={"col-span-full sm:col-span-6 md:col-span-4 p-0!"}
         >
           <img
             className="w-full h-auto object-contain min-h-37.5"
-            src={`https://github-readme-stats-fkr2.vercel.app/api/top-langs?username=zainakramwork4&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bold=false&cache_seconds=0&v=${cacheBust}`}
+            src={`https://github-readme-stats.vercel.app/api/top-langs?username=zainakramwork4&layout=compact&langs_count=8${statsQuery}`}
             alt="GitHub Top Languages"
             loading="lazy"
           />
         </ItemLayout>
 
-        {/* Overall Stats Card */}
+        {/* GitHub Stats */}
         <ItemLayout className={"col-span-full md:col-span-8 p-0!"}>
           <img
             className="w-full h-auto object-contain min-h-37.5"
-            src={`https://github-readme-stats-fkr2.vercel.app/api?username=zainakramwork4&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bold=false&cache_seconds=0&v=${cacheBust}`}
+            src={`https://github-readme-stats.vercel.app/api?username=zainakramwork4&show_icons=true&include_all_commits=true&count_private=false${statsQuery}`}
             alt="GitHub Stats"
             loading="lazy"
           />
         </ItemLayout>
 
-        {/* Skills Icons Card */}
+        {/* Skills Icons */}
         <ItemLayout className={"col-span-full"}>
           <img
             className="w-full h-auto"
@@ -88,27 +87,28 @@ const AboutDetails = () => {
           />
         </ItemLayout>
 
-        {/* GitHub Streak Card - Custom Vercel Deployment Link */}
+        {/* GitHub Streak - Zain's own Vercel deployment */}
         <ItemLayout className={"col-span-full md:col-span-6 p-0!"}>
-        <img
-  className="w-full h-auto object-contain min-h-37.5"
-  src={`https://github-readme-streak-stats-iota-two-54.vercel.app?user=zainakramwork4&theme=dark&hide_border=true&type=svg&background=EB545400&ring=FEFE5B&currStreakLabel=FEFE5B&v=${cacheBust}`}
-  alt="GitHub Streak"
-  loading="lazy"
-/>
+          <img
+            className="w-full h-auto object-contain min-h-37.5"
+            src={`https://github-readme-streak-stats-rho-rust.vercel.app/?user=zainakramwork4&theme=dark&hide_border=true&type=svg&background=EB545400&ring=FEFE5B&currStreakLabel=FEFE5B&v=${cacheBust}`}
+            alt="GitHub Streak"
+            loading="lazy"
+          />
         </ItemLayout>
 
-        {/* Pinned Repository Card */}
+        {/* Pinned Repository: pakbooking */}
         <ItemLayout className={"col-span-full md:col-span-6 p-0!"}>
           <Link
             href="https://github.com/zainakramwork4/pakbooking"
             target="_blank"
+            rel="noopener noreferrer"
             className="w-full"
           >
             <img
               className="w-full h-auto object-contain min-h-37.5"
-              src={`https://github-readme-stats-fkr2.vercel.app/api/pin?username=zainakramwork4&repo=pakbooking&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bold=false&description_lines_count=2&cache_seconds=0&v=${cacheBust}`}
-              alt="Pinned Repo"
+              src={`https://github-readme-stats.vercel.app/api/pin?username=zainakramwork4&repo=pakbooking${statsQuery}`}
+              alt="Pinned Repo - pakbooking"
               loading="lazy"
             />
           </Link>
