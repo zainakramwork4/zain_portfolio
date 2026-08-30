@@ -101,7 +101,7 @@ const AboutDetails = () => {
         {/* Pinned Repository Card */}
         <ItemLayout className={"col-span-full md:col-span-6 p-0!"}>
           <Link
-            href="https://github.com/zainakramwork4"
+            href="https://github.com/zainakramwork4/pakbooking"
             target="_blank"
             className="w-full"
           >
