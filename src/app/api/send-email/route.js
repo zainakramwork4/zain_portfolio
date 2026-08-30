@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 
-const ADMIN_EMAIL = "zainakram.work4@gmail.com";
+const ADMIN_EMAIL = process.env.CONTACT_TO_EMAIL || "zainakram.work4@gmail.com";
 
 const escapeHtml = (value = "") =>
   String(value)
@@ -10,75 +10,106 @@ const escapeHtml = (value = "") =>
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
 
+const getTransporter = () => {
+  const host = process.env.SMTP_HOST || "smtp.gmail.com";
+  const port = Number(process.env.SMTP_PORT || 465);
+  const secure = String(process.env.SMTP_SECURE || "true") === "true";
+
+  if (!process.env.SMTP_USER || !process.env.SMTP_PASSWORD) {
+    throw new Error("SMTP credentials are not configured.");
+  }
+
+  return nodemailer.createTransport({
+    host,
+    port,
+    secure,
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASSWORD,
+    },
+  });
+};
+
 export async function POST(request) {
   try {
-    const { from_name, from_email, message } = await request.json();
+    const body = await request.json();
+    const fromName = String(body.from_name || "").trim();
+    const fromEmail = String(body.from_email || "").trim();
+    const message = String(body.message || "").trim();
 
-    if (!from_name || !from_email || !message) {
+    if (!fromName || !fromEmail || !message) {
       return Response.json(
         { success: false, message: "Name, email and message are required." },
         { status: 400 }
       );
     }
 
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_PASSWORD,
-      },
-    });
+    if (!/^\S+@\S+\.\S+$/.test(fromEmail)) {
+      return Response.json(
+        { success: false, message: "Please enter a valid email address." },
+        { status: 400 }
+      );
+    }
 
-    const safeName = escapeHtml(from_name);
-    const safeEmail = escapeHtml(from_email);
+    if (fromName.length > 100 || fromEmail.length > 254 || message.length > 5000) {
+      return Response.json(
+        { success: false, message: "Please keep your message within the allowed limits." },
+        { status: 400 }
+      );
+    }
+
+    const transporter = getTransporter();
+    await transporter.verify();
+
+    const safeName = escapeHtml(fromName);
+    const safeEmail = escapeHtml(fromEmail);
     const safeMessage = escapeHtml(message).replace(/\n/g, "<br>");
 
     await transporter.sendMail({
-      from: process.env.GMAIL_USER,
+      from: `Portfolio Contact <${process.env.SMTP_USER}>`,
       to: ADMIN_EMAIL,
-      replyTo: from_email,
-      subject: `New Contact Message from ${from_name}`,
+      replyTo: fromEmail,
+      subject: `Portfolio contact: ${fromName}`,
+      text: `New portfolio message\n\nName: ${fromName}\nEmail: ${fromEmail}\n\nMessage:\n${message}`,
       html: `
-        <div style="font-family: Arial, sans-serif; padding: 20px; background-color: #f4f4f4;">
-          <div style="background-color: white; padding: 20px; border-radius: 10px;">
-            <h2 style="color: #333;">New Contact Message</h2>
-            <hr style="border: none; border-top: 2px solid #FEFE5B;">
-            <p><strong>Name:</strong> ${safeName}</p>
-            <p><strong>Email:</strong> ${safeEmail}</p>
-            <h3 style="color: #FEFE5B; margin-top: 20px;">Message:</h3>
-            <p style="background-color: #f9f9f9; padding: 15px; border-left: 4px solid #FEFE5B;">
-              ${safeMessage}
-            </p>
-            <hr style="border: none; border-top: 2px solid #FEFE5B; margin-top: 20px;">
-            <p style="color: #666; font-size: 12px;">This email was sent from your portfolio website contact form.</p>
+        <div style="margin:0;padding:32px;background:#f5f7fa;font-family:Arial,sans-serif;color:#172033">
+          <div style="max-width:640px;margin:0 auto;background:#ffffff;border:1px solid #e5e7eb;border-radius:16px;overflow:hidden">
+            <div style="padding:24px 28px;background:#111827;color:#ffffff">
+              <div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#cbd5e1">Portfolio Contact</div>
+              <h1 style="margin:8px 0 0;font-size:24px">New message from ${safeName}</h1>
+            </div>
+            <div style="padding:28px">
+              <p style="margin:0 0 8px;font-size:13px;color:#64748b">SENDER</p>
+              <p style="margin:0;font-size:16px"><strong>${safeName}</strong> &lt;${safeEmail}&gt;</p>
+              <p style="margin:24px 0 8px;font-size:13px;color:#64748b">MESSAGE</p>
+              <div style="padding:18px;background:#f8fafc;border-left:3px solid #111827;border-radius:8px;line-height:1.7">${safeMessage}</div>
+              <p style="margin:24px 0 0;font-size:12px;color:#94a3b8">Sent from the portfolio contact form.</p>
+            </div>
           </div>
         </div>
       `,
     });
 
     await transporter.sendMail({
-      from: process.env.GMAIL_USER,
-      to: from_email,
-      subject: "Message Received - Muhammad Zain Akram",
+      from: `Muhammad Zain Akram <${process.env.SMTP_USER}>`,
+      to: fromEmail,
+      replyTo: ADMIN_EMAIL,
+      subject: "Thanks for contacting Muhammad Zain Akram",
+      text: `Hi ${fromName},\n\nThanks for reaching out. I have received your message and will get back to you soon.\n\nYour message:\n${message}\n\nBest regards,\nMuhammad Zain Akram`,
       html: `
-        <div style="font-family: Arial, sans-serif; padding: 20px; background-color: #f4f4f4;">
-          <div style="background-color: white; padding: 20px; border-radius: 10px;">
-            <h2 style="color: #333;">Thank you for reaching out!</h2>
-            <hr style="border: none; border-top: 2px solid #FEFE5B;">
-            <p>Hi ${safeName},</p>
-            <p>I've received your message and will get back to you as soon as possible.</p>
-            <h3 style="color: #FEFE5B;">Your Message:</h3>
-            <p style="background-color: #f9f9f9; padding: 15px; border-left: 4px solid #FEFE5B;">
-              ${safeMessage}
-            </p>
-            <hr style="border: none; border-top: 2px solid #FEFE5B; margin-top: 20px;">
-            <p><strong>Quick Contact Methods:</strong></p>
-            <ul>
-              <li>Email: <strong>${ADMIN_EMAIL}</strong></li>
-              <li>LinkedIn: <a href="https://www.linkedin.com/in/muhammad-zain-akram-/">Muhammad Zain Akram</a></li>
-              <li>GitHub: <a href="https://github.com/zainakramwork4">zainakramwork4</a></li>
-            </ul>
-            <p style="color: #666; font-size: 12px; margin-top: 20px;">Best regards,<br>Muhammad Zain Akram<br>Full-Stack Engineer</p>
+        <div style="margin:0;padding:32px;background:#f5f7fa;font-family:Arial,sans-serif;color:#172033">
+          <div style="max-width:640px;margin:0 auto;background:#ffffff;border:1px solid #e5e7eb;border-radius:16px;overflow:hidden">
+            <div style="padding:28px;background:#111827;color:#ffffff">
+              <div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#cbd5e1">Thank you</div>
+              <h1 style="margin:8px 0 0;font-size:24px">Your message was received</h1>
+            </div>
+            <div style="padding:28px;line-height:1.7">
+              <p>Hi ${safeName},</p>
+              <p>Thanks for getting in touch. I've received your message and will get back to you as soon as possible.</p>
+              <p style="margin:24px 0 8px;font-size:13px;color:#64748b">YOUR MESSAGE</p>
+              <div style="padding:18px;background:#f8fafc;border-left:3px solid #111827;border-radius:8px">${safeMessage}</div>
+              <p style="margin-top:24px">Best regards,<br/><strong>Muhammad Zain Akram</strong><br/>Full-Stack Engineer</p>
+            </div>
           </div>
         </div>
       `,
@@ -86,14 +117,15 @@ export async function POST(request) {
 
     return Response.json({
       success: true,
-      message: "Email sent successfully!",
+      message: "Message sent successfully.",
     });
   } catch (error) {
-    console.error("Email error:", error);
+    console.error("SMTP email error:", error);
+
     return Response.json(
       {
         success: false,
-        message: "Failed to send email. Please try again later.",
+        message: "Unable to send your message right now. Please try again shortly.",
       },
       { status: 500 }
     );
