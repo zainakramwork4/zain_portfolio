@@ -1,5 +1,7 @@
 import nodemailer from "nodemailer";
 
+const SMTP_USER = process.env.SMTP_USER || process.env.GMAIL_USER;
+const SMTP_PASSWORD = process.env.SMTP_PASSWORD || process.env.GMAIL_PASSWORD;
 const ADMIN_EMAIL = process.env.CONTACT_TO_EMAIL || "zainakram.work4@gmail.com";
 
 const escapeHtml = (value = "") =>
@@ -15,7 +17,7 @@ const getTransporter = () => {
   const port = Number(process.env.SMTP_PORT || 465);
   const secure = String(process.env.SMTP_SECURE || "true") === "true";
 
-  if (!process.env.SMTP_USER || !process.env.SMTP_PASSWORD) {
+  if (!SMTP_USER || !SMTP_PASSWORD) {
     throw new Error("SMTP credentials are not configured.");
   }
 
@@ -24,8 +26,8 @@ const getTransporter = () => {
     port,
     secure,
     auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASSWORD,
+      user: SMTP_USER,
+      pass: SMTP_PASSWORD,
     },
   });
 };
@@ -66,7 +68,7 @@ export async function POST(request) {
     const safeMessage = escapeHtml(message).replace(/\n/g, "<br>");
 
     await transporter.sendMail({
-      from: `Portfolio Contact <${process.env.SMTP_USER}>`,
+      from: `Portfolio Contact <${SMTP_USER}>`,
       to: ADMIN_EMAIL,
       replyTo: fromEmail,
       subject: `Portfolio contact: ${fromName}`,
@@ -91,7 +93,7 @@ export async function POST(request) {
     });
 
     await transporter.sendMail({
-      from: `Muhammad Zain Akram <${process.env.SMTP_USER}>`,
+      from: `Muhammad Zain Akram <${SMTP_USER}>`,
       to: fromEmail,
       replyTo: ADMIN_EMAIL,
       subject: "Thanks for contacting Muhammad Zain Akram",
@@ -115,18 +117,11 @@ export async function POST(request) {
       `,
     });
 
-    return Response.json({
-      success: true,
-      message: "Message sent successfully.",
-    });
+    return Response.json({ success: true, message: "Message sent successfully." });
   } catch (error) {
     console.error("SMTP email error:", error);
-
     return Response.json(
-      {
-        success: false,
-        message: "Unable to send your message right now. Please try again shortly.",
-      },
+      { success: false, message: "Unable to send your message right now. Please try again shortly." },
       { status: 500 }
     );
   }
